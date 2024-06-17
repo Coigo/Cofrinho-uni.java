@@ -1,32 +1,39 @@
 import java.util.HashMap;
 import java.util.Map;
 
+interface IAddMoeda {
+	adicionar
+}
+
 public class Cofinho {
 	
 	MoedaDolar dolar;
+	Map<String, Moeda> cofre;
 	
 	Cofinho () {
-		this.dolar = new MoedaDolar();
-	}
-	
-	public void adicionarAoCofre(String moeda, Double valor) {
+		Moeda dolar = new MoedaDolar();
+		Moeda real = new MoedaReal();
+		Moeda euro = new MoedaEuro();
+		
+		this.cofre.put("dolar", dolar);
+		this.cofre.put("real", real);
+		this.cofre.put("euro", euro);
+		
+		
+		
 		Map<String, Runnable> moedaMap = new HashMap<>();
 		
-			moedaMap.put("dolar", () -> this.handleAddDolar(valor));
-			
-			moedaMap.get(moeda).run();
-       
+		
+		
 	}
 	
-	public void retirarDoCofre(String moeda, Double valor) {
-		Map<String, Runnable> moedaMap = new HashMap<>();
-		
-		moedaMap.put("dolar", () -> this.handleRemoveDolar( valor));
-		
-		moedaMap.get(moeda).run();
+	private void validarMoeda (String moeda) {
+		if ( !this.cofre.containsKey(moeda) ) {
+			throw new Error("Forneca uma moeda valida!");
+		}
 	}
-
-	private void handleAddDolar( double valor ) {
+	
+	private void handleAdd( double valor ) {
 		double valorAtual = this.dolar.getQuantidade();
 		System.out.println(String.format("o valor atual é de %.2f", valorAtual));
 
@@ -37,7 +44,7 @@ public class Cofinho {
 		System.out.println(String.format("o valor atual é de %.2f", agoraasim ));
 	}
 		
-	private void handleRemoveDolar( double valor ) {
+	private void handleRemove( double valor ) {
 		if (this.possuiValorSuficienteParaRetirar("dolar", valor)) {
 			
 		}

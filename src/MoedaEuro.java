@@ -1,10 +1,19 @@
 
-public class MoedaEuro extends Moeda{
+public class MoedaEuro extends Moeda {
+	
+	@Override
+	void setQuantidade(double valor) {
+		this.quantidade = valor;
+	}
 
 	@Override
-	Double converterParaReal() {
-		
-		return null;
+	public double getQuantidade () {
+		return this.quantidade;
 	}
 	
+	@Override
+	double converterParaReal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
